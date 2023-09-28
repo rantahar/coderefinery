@@ -1,13 +1,11 @@
 import pandas as pd
 from matplotlib import pyplot as plt
 
+import my_statistics as stats
+
 def read_data_from_file(file_name, num_measurements: int, column_name) -> list[float]:
     data = pd.read_csv(file_name, nrows=num_measurements)
     return data[column_name]
-
-def compute_statistics(temperatures: list[float], num_measurements: int) -> float:
-    mean = sum(temperatures) / num_measurements
-    return mean
 
 def plot_temperatures(temperatures, mean, num_measurements):
     plt.xlabel("Number of measurement")
@@ -25,6 +23,6 @@ for num_measurements in [25, 100, 500]:
         "Air temperature (degC)"
     )
 
-    mean = compute_statistics(temperatures, num_measurements)
+    mean = stats.compute_statistics(temperatures)
 
     plot_temperatures(temperatures, mean, num_measurements)
